@@ -1,0 +1,147 @@
+/* assets/css/style.css */
+
+:root {
+  /* 核心配色 (Dark Mode Default) */
+  --bg-primary: #121212;      /* 深邃黑背景 */
+  --bg-secondary: #1e1e1e;    /* 卡片/区块背景 */
+  --text-primary: #e0e0e0;    /* 主文本 */
+  --text-secondary: #a0a0a0;  /* 次级文本 */
+  --accent-color: #64ffda;    /* 强调色 (例如青色，类似VS Code高亮) */
+  --border-color: #333333;
+
+  /* 尺寸变量 */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --container-width: 1024px;
+  
+  /* 动画 */
+  --transition-speed: 0.3s;
+}
+
+/* 全局重置 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 链接样式 */
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+/* 布局容器 */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  width: 100%;
+}
+
+/* 核心组件：头部 */
+header {
+  padding: var(--spacing-lg) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-lg);
+  justify-content: flex-end;
+}
+
+/* 核心组件：主要内容区 */
+main {
+  flex: 1; /* 确保Footer沉底 */
+  padding: var(--spacing-xl) 0;
+}
+
+/* 核心组件：页脚 */
+footer {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* 工具类：通用网格 (用于项目和博客列表) */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 2rem;
+  }
+  
+  nav ul {
+    gap: var(--spacing-md);
+    font-size: 0.9rem;
+  }
+}
+/* 组件：CTA 按钮 */
+.cta-button {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.cta-button:hover {
+  background-color: rgba(100, 255, 218, 0.1); /* 强调色的淡色背景 */
+}
+
+/* 博客文章内部样式 */
+.post-content h2 { margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary); }
+.post-content h3 { margin-top: 1.5rem; margin-bottom: 0.8rem; }
+.post-content p { margin-bottom: 1.2rem; }
+.post-content ul, .post-content ol { margin-left: 1.5rem; margin-bottom: 1.2rem; }
+.post-content li { margin-bottom: 0.5rem; }
+.post-content blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 1.5rem 0;
+}
+/* 代码块样式 */
+.post-content pre {
+    background-color: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+.post-content code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+}

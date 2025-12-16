@@ -1,0 +1,44 @@
+# ==========================================
+# 站点设置 (Site Settings)
+# ==========================================
+title: "您的姓名 | 全栈开发者 & UI设计师"
+email: your-email@domain.com
+description: >- # 用于SEO和Meta标签
+  资深全栈开发者和UI/UX设计师的个人作品集与技术博客。
+  专注现代Web技术与简约设计。
+baseurl: "" # 如果是自定义域名，留空；如果是 username.github.io/repo-name，填 "/repo-name"
+url: "https://yourusername.github.io" # 您的最终域名
+
+# ==========================================
+# 构建设置 (Build Settings)
+# ==========================================
+markdown: kramdown
+theme: null # 我们手动编写样式，不使用预设主题
+permalink: /blog/:year/:month/:day/:title/
+
+# ==========================================
+# 自定义变量 (用于模板调用)
+# ==========================================
+author:
+  name: "您的姓名"
+  role: "Full-Stack Developer & UI/UX Designer"
+  avatar: "/assets/images/avatar.jpg"
+
+social:
+  github: "yourusername"
+  linkedin: "yourusername"
+  email: "your-email@domain.com"
+
+# ==========================================
+# 插件 (GitHub Pages 原生支持)
+# ==========================================
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# 排除不需要构建的文件
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - README.md

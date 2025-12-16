@@ -1,0 +1,33 @@
+---
+layout: default
+title: 博客
+permalink: /blog/
+---
+
+<div class="blog-index">
+    <h1 style="margin-bottom: 2rem;">文章列表</h1>
+
+    <ul style="list-style: none;">
+        {% for post in site.posts %}
+        <li style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem;">
+            
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
+            
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                {{ post.date | date: "%Y-%m-%d" }} 
+                {% if post.categories.size > 0 %}
+                <span style="color: var(--accent-color);"> / {{ post.categories | first }}</span>
+                {% endif %}
+            </div>
+
+            <p style="color: var(--text-primary);">
+                {{ post.excerpt | strip_html | truncatewords: 30 }}
+            </p>
+            
+            <a href="{{ post.url | relative_url }}" style="font-size: 0.9rem; text-decoration: underline; margin-top: 0.5rem; display: inline-block;">阅读全文</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

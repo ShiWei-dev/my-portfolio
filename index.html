@@ -1,0 +1,63 @@
+---
+layout: default
+title: 首页
+---
+
+<section class="hero-section" style="padding: 4rem 0; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+    <div class="hero-text" style="flex: 1; min-width: 300px;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">你好，我是 {{ site.author.name }}。</h1>
+        <h2 style="font-size: 1.5rem; color: var(--accent-color); margin-bottom: 1rem;">{{ site.author.role }}</h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px;">
+            专注于构建高性能 Web 应用与打造极致用户体验。拥有 5 年全栈开发经验，善于将复杂问题转化为优雅的解决方案。
+        </p>
+        <a href="{{ '/contact.html' | relative_url }}" class="cta-button">联系我</a>
+    </div>
+    
+    <div class="hero-image">
+        <div style="width: 200px; height: 200px; background-color: var(--bg-secondary); border-radius: 50%; border: 2px solid var(--accent-color);">
+            </div>
+    </div>
+</section>
+
+<hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+<section class="skills-section">
+    <h3 style="margin-bottom: 1.5rem;">技术栈</h3>
+    <div class="skills-container" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+        {% assign skills = "JavaScript (ES6+), React, Node.js, Python, UI/UX Design, Docker, Git, Jekyll" | split: ", " %}
+        {% for skill in skills %}
+            <span style="background-color: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; border: 1px solid var(--border-color);">
+                {{ skill }}
+            </span>
+        {% endfor %}
+    </div>
+</section>
+
+<hr style="border: 0; border-top: 1px solid var(--border-color); margin: 3rem 0;">
+
+<section class="featured-projects">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
+        <h3>精选项目</h3>
+        <a href="{{ '/projects.html' | relative_url }}" style="font-size: 0.9rem; color: var(--accent-color);">查看全部 &rarr;</a>
+    </div>
+
+    <div class="grid-layout">
+        <article style="background-color: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <h4 style="margin-bottom: 0.5rem;">E-Commerce Dashboard</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">基于 React 和 D3.js 的数据可视化仪表盘，优化了库存管理效率。</p>
+            <div style="font-size: 0.8rem; color: var(--accent-color);">React · D3.js</div>
+        </article>
+
+        <article style="background-color: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <h4 style="margin-bottom: 0.5rem;">Task API Service</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">高并发任务调度微服务，使用 Go 语言重构，性能提升 300%。</p>
+            <div style="font-size: 0.8rem; color: var(--accent-color);">Go · Docker · Redis</div>
+        </article>
+        
+        <article style="background-color: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <h4 style="margin-bottom: 0.5rem;">Portfolio v1</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">早期的个人网站设计，探索了 WebGL 在网页交互中的应用。</p>
+            <div style="font-size: 0.8rem; color: var(--accent-color);">Three.js · HTML5</div>
+        </article>
+    </div>
+</section>
