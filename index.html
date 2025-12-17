@@ -1,63 +1,111 @@
 ---
 layout: default
-title: 首页
+title: Home
 ---
 
-<section class="hero-section" style="padding: 4rem 0; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
-    <div class="hero-text" style="flex: 1; min-width: 300px;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">你好，我是 {{ site.author.name }}。</h1>
-        <h2 style="font-size: 1.5rem; color: var(--accent-color); margin-bottom: 1rem;">{{ site.author.role }}</h2>
-        <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px;">
-            专注于构建高性能 Web 应用与打造极致用户体验。拥有 5 年全栈开发经验，善于将复杂问题转化为优雅的解决方案。
+<section style="padding: 4rem 0; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap-reverse;">
+    <div style="flex: 3; min-width: 300px;">
+        <span style="color: var(--accent); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">AI Researcher</span>
+        <h1 style="margin: 0.5rem 0 1.5rem 0;">Focusing on Sample Efficiency & <br>Generalization in RL.</h1>
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; line-height: 1.8;">
+            Hi, I'm <strong>{{ site.author.name }}</strong>. <br>
+            I am a Master student researching <strong>Reinforcement Learning</strong> and <strong>Multi-Agent Systems</strong>. 
+            My goal is to bridge the gap between simulation and the real world (Sim-to-Real).
         </p>
-        <a href="{{ '/contact.html' | relative_url }}" class="cta-button">联系我</a>
+        <div style="display: flex; gap: 1rem;">
+            <a href="{{ '/assets/pdf/resume_en.pdf' | relative_url }}" target="_blank" class="btn btn-primary">
+                Download CV (PDF)
+            </a>
+            <a href="{{ '/about.html' | relative_url }}" class="btn btn-outline">More About Me</a>
+        </div>
     </div>
     
-    <div class="hero-image">
-        <div style="width: 200px; height: 200px; background-color: var(--bg-secondary); border-radius: 50%; border: 2px solid var(--accent-color);">
+    <div style="flex: 1; min-width: 200px; display: flex; justify-content: center;">
+        <img src="https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+             alt="Profile" 
+             style="width: 220px; height: 220px; object-fit: cover; border-radius: 50%; border: 4px solid var(--bg-secondary);">
+    </div>
+</section>
+
+<section>
+    <h2>Research Interests</h2>
+    <div class="research-grid">
+        <div class="card">
+            <div style="height: 140px; overflow: hidden; border-radius: 4px; margin-bottom: 1rem;">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     alt="RL" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-    </div>
-</section>
-
-<hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
-
-<section class="skills-section">
-    <h3 style="margin-bottom: 1.5rem;">技术栈</h3>
-    <div class="skills-container" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
-        {% assign skills = "JavaScript (ES6+), React, Node.js, Python, UI/UX Design, Docker, Git, Jekyll" | split: ", " %}
-        {% for skill in skills %}
-            <span style="background-color: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; border: 1px solid var(--border-color);">
-                {{ skill }}
-            </span>
-        {% endfor %}
-    </div>
-</section>
-
-<hr style="border: 0; border-top: 1px solid var(--border-color); margin: 3rem 0;">
-
-<section class="featured-projects">
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
-        <h3>精选项目</h3>
-        <a href="{{ '/projects.html' | relative_url }}" style="font-size: 0.9rem; color: var(--accent-color);">查看全部 &rarr;</a>
-    </div>
-
-    <div class="grid-layout">
-        <article style="background-color: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-            <h4 style="margin-bottom: 0.5rem;">E-Commerce Dashboard</h4>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">基于 React 和 D3.js 的数据可视化仪表盘，优化了库存管理效率。</p>
-            <div style="font-size: 0.8rem; color: var(--accent-color);">React · D3.js</div>
-        </article>
-
-        <article style="background-color: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-            <h4 style="margin-bottom: 0.5rem;">Task API Service</h4>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">高并发任务调度微服务，使用 Go 语言重构，性能提升 300%。</p>
-            <div style="font-size: 0.8rem; color: var(--accent-color);">Go · Docker · Redis</div>
-        </article>
+            <h3>Reinforcement Learning</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                Developing algorithms for efficient exploration and offline RL.
+            </p>
+        </div>
         
-        <article style="background-color: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-            <h4 style="margin-bottom: 0.5rem;">Portfolio v1</h4>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">早期的个人网站设计，探索了 WebGL 在网页交互中的应用。</p>
-            <div style="font-size: 0.8rem; color: var(--accent-color);">Three.js · HTML5</div>
-        </article>
+        <div class="card">
+            <div style="height: 140px; overflow: hidden; border-radius: 4px; margin-bottom: 1rem;">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     alt="Embodied AI" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3>Embodied AI</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                Sim-to-Real transfer for quadrupedal locomotion tasks.
+            </p>
+        </div>
+        
+        <div class="card">
+            <div style="height: 140px; overflow: hidden; border-radius: 4px; margin-bottom: 1rem; background: #f1f5f9;">
+                <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    alt="Multi-Agent Systems" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h3>Multi-Agent Systems</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                Cooperative policy learning in decentralized environments.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>Selected Projects</h2>
+    <div class="research-grid">
+        <a href="{{ '/about.html' | relative_url }}" class="card" style="display: block;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3 style="margin:0; font-size: 1.2rem;">Quadruped Robot nav</h3>
+                <span style="font-size: 0.8rem; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; border-radius: 4px;">Robotics</span>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                A hierarchical RL framework for Unitree Go1 navigation.
+            </p>
+            <div style="margin-top: 1rem; font-size: 0.85rem; font-weight: 500;">View Details &rarr;</div>
+        </a>
+
+        <a href="https://github.com" target="_blank" class="card" style="display: block;">
+             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3 style="margin:0; font-size: 1.2rem;">MARL Environment</h3>
+                <span style="font-size: 0.8rem; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; border-radius: 4px;">Open Source</span>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                High-performance distributed training framework for MARL.
+            </p>
+            <div style="margin-top: 1rem; font-size: 0.85rem; font-weight: 500;">View Code &rarr;</div>
+        </a>
+    </div>
+</section>
+
+<section id="publications">
+    <h2>Selected Publications</h2>
+    
+    <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div>
+            <a href="#" class="pub-title">Policy Optimization with Deep Reinforcement Learning for Robotic Control</a>
+            <div class="pub-authors"><strong>Your Name</strong>, Advisor Name, Collaborator A</div>
+            <div class="pub-venue">ICRA 2024 (Acceptance Rate: 20%)</div>
+            <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="#" style="color: var(--accent); margin-right: 10px;">[PDF]</a>
+                <a href="#" style="color: var(--accent);">[Code]</a>
+            </div>
+        </div>
     </div>
 </section>
