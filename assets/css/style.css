@@ -1,16 +1,20 @@
 /* assets/css/style.css - Modern Academic Light Theme */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
 
+/* --- 保持 :root 变量不变 --- */
 :root {
-  /* 现代学术浅色系配色 */
+  /* ...之前的变量保持不变... */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc; /* 极浅的灰蓝，用于区分板块 */
-  --text-main: #1e293b;    /* 深灰，接近黑，但不刺眼 */
-  --text-muted: #64748b;   /* 次级文字 */
-  --accent: #2563eb;       /* 学术蓝 (Royal Blue) */
-  --border: #e2e8f0;       /* 边框色 */
+  --bg-secondary: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --accent: #2563eb;
+  --border: #e2e8f0;
+  --container-width: 850px;
   
-  --container-width: 850px; /* 稍微收窄，增加阅读沉浸感 */
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  --shadow-glow: 0 8px 30px rgba(37, 99, 235, 0.12);
 }
 
 /* 全局重置 */
@@ -19,10 +23,69 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-main);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
   line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden; /* 防止光波溢出导致横向滚动条 */
 }
+
+/* 层级 1: 静态的工程点阵背景 
+   (底图：如同未干的蓝图墨迹)
+*/
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -2;
+  
+  /* 定义点阵样式：浅灰色的小点 */
+  background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+  background-size: 32px 32px; /* 点与点的间距 */
+  
+  /* 让背景稍微淡一点，不干扰文字 */
+  opacity: 0.6;
+}
+
+/* 层级 2: 流动的“数据光波” 
+   (顶层：叠加一个极其微妙的渐变流光)
+*/
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  z-index: -1;
+  
+  /* 创建一个巨大的对角线渐变 
+     中间是极淡的蓝色 (opacity 0.04)，两边是透明
+  */
+  background: linear-gradient(
+    60deg, 
+    transparent 20%, 
+    rgba(37, 99, 235, 0.04) 40%, 
+    rgba(37, 99, 235, 0.06) 50%, 
+    rgba(37, 99, 235, 0.04) 60%, 
+    transparent 80%
+  );
+  
+  background-size: 200% 200%;
+  
+  /* 应用动画：让光波缓慢流过屏幕 */
+  animation: data-flow 15s linear infinite;
+  pointer-events: none; /* 确保不阻挡点击 */
+}
+
+/* 定义光波流动的关键帧动画 */
+@keyframes data-flow {
+  0% {
+    transform: translate(-20%, -20%) rotate(0deg);
+  }
+  100% {
+    transform: translate(20%, 20%) rotate(0deg);
+  }
+}
+
+
 
 a { text-decoration: none; color: inherit; transition: 0.2s; }
 a:hover { color: var(--accent); }
@@ -34,17 +97,24 @@ a:hover { color: var(--accent); }
 }
 
 /* 导航栏：极简白底 */
+
 header {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
   padding: 1.2rem 0;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.7); /* 降低不透明度 */
+  backdrop-filter: blur(16px) saturate(180%); /* 增强模糊和饱和度（Apple风格） */
   position: sticky; top: 0; z-index: 100;
 }
 
 nav ul { display: flex; gap: 2rem; list-style: none; justify-content: flex-end; }
-nav a { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); }
+nav a { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); position: relative; }
+/* 导航链接悬停特效 */
 nav a:hover { color: var(--accent); }
+nav a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 2px;
+  background: var(--accent); transition: width 0.3s;
+}
+nav a:hover::after { width: 100%; }
 .brand { font-weight: 700; color: var(--text-main); font-size: 1.1rem; margin-right: auto; }
 
 /* 核心板块样式 */
@@ -64,10 +134,18 @@ h2 { font-size: 1.5rem; border-bottom: 2px solid var(--bg-secondary); padding-bo
   transition: all 0.2s;
 }
 .btn-primary {
-  background-color: var(--accent);
+  background: var(--accent-gradient); /* 使用渐变代替纯色 */
   color: white;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.2);
 }
-.btn-primary:hover { background-color: #1d4ed8; color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+
+.btn-primary:hover { 
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); /* 增强发光感 */
+  filter: brightness(1.1);
+}
+
 .btn-outline {
   border: 1px solid var(--border);
   color: var(--text-main);
@@ -83,17 +161,18 @@ h2 { font-size: 1.5rem; border-bottom: 2px solid var(--bg-secondary); padding-bo
 }
 
 .card {
-  background: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.8); /* 轻微透明，为了融合背景点阵 */
+  backdrop-filter: blur(10px);          /* 毛玻璃质感 */
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;                  /* 更圆润的边角，符合现代UI趋势 */
   padding: 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 更丝滑的动画曲线 */
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 极其柔和的阴影 */
-  border-color: var(--accent);
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.3); /* 边框变蓝 */
+  box-shadow: var(--shadow-glow);       /* 触发蓝色光晕 */
 }
 
 /* 论文列表 - 经典学术布局 */
@@ -105,3 +184,50 @@ h2 { font-size: 1.5rem; border-bottom: 2px solid var(--bg-secondary); padding-bo
 
 /* 页脚 */
 footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+
+/* 博客文章内部样式 */
+.post-content h2 { margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary); }
+.post-content h3 { margin-top: 1.5rem; margin-bottom: 0.8rem; }
+.post-content p { margin-bottom: 1.2rem; }
+.post-content ul, .post-content ol { margin-left: 1.5rem; margin-bottom: 1.2rem; }
+.post-content li { margin-bottom: 0.5rem; }
+.post-content blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 1.5rem 0;
+}
+/* 代码块样式 */
+.post-content pre {
+    background-color: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+.post-content code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+}
+
+/* 修改年份显示，使用等宽字体 */
+.pub-year { 
+  font-family: var(--font-mono); 
+  font-weight: 700; 
+  color: var(--accent); /* 年份高亮为主题色 */
+  opacity: 0.9;
+  letter-spacing: -0.5px;
+}
+
+/* 如果您在HTML中使用了标签（如 index.html 中的 Robotics 标签） */
+/* 建议给那些 span 加上 class="badge"，然后添加如下样式： */
+.badge, span[style*="border-radius"] { 
+  font-family: var(--font-mono);
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(37, 99, 235, 0.05); /* 极淡的蓝色背景 */
+  border: 1px solid rgba(37, 99, 235, 0.2) !important;
+}
