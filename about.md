@@ -16,7 +16,7 @@ Previously, I worked as a Full-Stack Developer, which gave me a strong engineeri
 
 ## Research & Project Experience
 
-### Autonomous Quadruped Navigation <span class="pub-year">2023 - Present</span>
+### Autonomous Quadruped Navigation <span class="pub-year">2023.9 - Present</span>
 
 **Lead Researcher**
 {:.text-accent}
@@ -26,7 +26,7 @@ Previously, I worked as a Full-Stack Developer, which gave me a strong engineeri
 * Successfully deployed the policy on a **Unitree Go1** robot dog, achieving smooth navigation in cluttered office environments.
 * **Tech Stack:** PyTorch, Isaac Gym, ROS2, C++.
 
-### Distributed Multi-Agent Training Platform <span class="pub-year">2022 - 2023</span>
+### Distributed Multi-Agent Training Platform <span class="project-year">2022.9 - 2023.9</span>
 
 **Core Developer**
 {:.text-accent}

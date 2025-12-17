@@ -181,11 +181,17 @@ h3 {
 
 /* 论文列表 - 经典学术布局 */
 .pub-item { margin-bottom: 2rem; display: flex; gap: 1.5rem; align-items: baseline; }
-.pub-year { font-family: 'Merriweather', serif; font-weight: 700; color: var(--text-muted); width: 50px; flex-shrink: 0; }
 .pub-title { font-weight: 600; font-size: 1.1rem; color: var(--text-main); display: block; margin-bottom: 0.3rem;}
 .pub-authors { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.3rem; }
 .pub-venue { font-style: italic; color: var(--accent); font-weight: 500; font-size: 0.9rem; }
-
+/* 修改年份显示，使用等宽字体 */
+.pub-year { 
+    font-family: var(--font-mono); 
+    font-weight: 700; 
+    color: var(--accent); /* 年份高亮为主题色 */
+    opacity: 0.9;
+    letter-spacing: -0.5px;
+}
 
 /* 博客文章内部样式 */
 .post-content h2 { margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary); }
@@ -214,13 +220,15 @@ h3 {
     font-size: 0.9em;
 }
 
-/* 修改年份显示，使用等宽字体 */
-.pub-year { 
-  font-family: var(--font-mono); 
-  font-weight: 700; 
-  color: var(--accent); /* 年份高亮为主题色 */
-  opacity: 0.9;
-  letter-spacing: -0.5px;
+.project-year {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--accent); /* 使用您定义的高亮色 */
+    opacity: 0.9;
+    letter-spacing: -0.5px;
+    /* font-size: 0.9em; 稍微调小一点，显得更精致 */
+    margin-left: 10px; /* 左侧留出一点空隙，防止紧贴标题 */
+    white-space: nowrap; /* 强制不换行 */
 }
 /* 新增：辅助类 - 用于职位/角色的蓝色高亮 */
 .text-accent { 
@@ -252,7 +260,6 @@ h3 {
 
 /* 页脚 */
 footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
-
 
 
 
