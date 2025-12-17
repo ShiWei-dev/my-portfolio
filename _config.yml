@@ -40,7 +40,7 @@ plugins:
 
 # 排除不需要构建的文件
 exclude:
-  - Gemfile
-  - Gemfile.lock
+  # - Gemfile
+  # - Gemfile.lock
   - node_modules
   - README.md
