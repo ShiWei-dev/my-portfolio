@@ -3,24 +3,85 @@ layout: default
 title: Contact
 permalink: /contact.html
 ---
-<section class="container" style="max-width: 600px; padding-top: 4rem;">
-    <h1 style="margin-bottom: 1.5rem; color: var(--text-main);">Get in Touch</h1>
-    <p style="color: var(--text-muted); margin-bottom: 2rem;">
-        Open to research collaborations and academic discussions.
-    </p>
-    <form style="display: grid; gap: 1.5rem;">
-        <div>
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Name</label>
-            <input type="text" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-secondary);">
+
+<section class="container" style="max-width: 1000px; padding-top: 4rem;">
+    
+    <div class="contact-header" style="margin-bottom: 3rem; text-align: center;">
+        <h1 style="margin-bottom: 1rem;">Let's Connect</h1>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+            I am always open to discussing new research collaborations, engineering projects, or just chatting about AGI and Robotics.
+        </p>
+    </div>
+
+    <div class="contact-grid-layout">
+        
+        <div class="contact-info-panel">
+            <h3 style="margin-top: 0;">Contact Info</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem;">
+                Prefer email or social media? Reach out directly via:
+            </p>
+
+            <div class="contact-links">
+                <!-- 邮箱 -->
+                <a href="mailto:{{ site.social.email }}" class="contact-item">
+                    <div class="contact-icon">@</div>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">{{ site.social.email }}</div>
+                    </div>
+                </a>
+                <a href="mailto:your-personal@gmail.com" class="contact-item">
+                    <div class="contact-icon">Me</div>
+                    <div>
+                        <div class="contact-label">Email (Personal)</div>
+                        <div class="contact-value">your-personal@gmail.com</div>
+                    </div>
+                </a>
+                <!-- github -->
+                <a href="https://github.com/{{ site.social.github }}" target="_blank" class="contact-item">
+                    <div class="contact-icon">GH</div>
+                    <div>
+                        <div class="contact-label">GitHub</div>
+                        <div class="contact-value">github.com/{{ site.social.github }}</div>
+                    </div>
+                </a>
+                <!-- linkedin -->
+                <a href="https://linkedin.com/in/{{ site.social.linkedin }}" target="_blank" class="contact-item">
+                    <div class="contact-icon">IN</div>
+                    <div>
+                        <div class="contact-label">LinkedIn</div>
+                        <div class="contact-value">linkedin.com/in/{{ site.social.linkedin }}</div>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div>
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email</label>
-            <input type="email" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-secondary);">
+
+        <div class="contact-form-panel">
+
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display: grid; gap: 1.2rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Your Name</label>
+                    <input type="text" name="name" required class="form-input">
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Phone Number (Optional)</label>
+                    <input type="tel" name="phone" class="form-input">
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Email Address</label>
+                    <input type="email" name="email" required class="form-input">
+                </div>
+                
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Message</label>
+                    <textarea name="message" rows="5" required class="form-input" style="resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
         </div>
-        <div>
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Message</label>
-            <textarea rows="5" style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-secondary);"></textarea>
-        </div>
-        <button type="button" class="btn btn-primary">Send Message</button>
-    </form>
+
+    </div>
 </section>

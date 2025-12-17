@@ -3,7 +3,6 @@
 
 /* --- 保持 :root 变量不变 --- */
 :root {
-  /* ...之前的变量保持不变... */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --text-main: #1e293b;
@@ -20,73 +19,63 @@
 /* 全局重置 */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* 修改 body：设置为相对定位，允许伪元素叠加 */
 body {
-  background-color: var(--bg-primary);
   color: var(--text-main);
   font-family: 'Inter', -apple-system, sans-serif;
-  line-height: 1.7;
-  position: relative;
+  line-height: 1.8;
   min-height: 100vh;
-  overflow-x: hidden; /* 防止光波溢出导致横向滚动条 */
+  position: relative;
+  overflow-x: hidden; /* 防止光束动画撑开页面 */
+  background-color: transparent; /* 背景色移交给 html 或伪元素 */
 }
 
-/* 层级 1: 静态的工程点阵背景 
-   (底图：如同未干的蓝图墨迹)
-*/
+/* 新增：层级 1 (底层) - 静态的淡淡点阵 */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   z-index: -2;
-  
-  /* 定义点阵样式：浅灰色的小点 */
+  /* 极淡的灰色圆点，透明度降低到 0.4 以保持克制 */
   background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
-  background-size: 32px 32px; /* 点与点的间距 */
-  
-  /* 让背景稍微淡一点，不干扰文字 */
-  opacity: 0.6;
+  background-size: 32px 32px;
+  opacity: 0.4;
 }
 
-/* 层级 2: 流动的“数据光波” 
-   (顶层：叠加一个极其微妙的渐变流光)
-*/
+/* 新增：层级 2 (顶层) - 淡淡的流光脉冲 */
 body::after {
   content: "";
   position: fixed;
-  top: -50%; left: -50%; width: 200%; height: 200%;
+  top: -100%; left: -100%; width: 300%; height: 300%;
   z-index: -1;
+  pointer-events: none;
   
-  /* 创建一个巨大的对角线渐变 
-     中间是极淡的蓝色 (opacity 0.04)，两边是透明
-  */
-  background: linear-gradient(
-    60deg, 
-    transparent 20%, 
-    rgba(37, 99, 235, 0.04) 40%, 
-    rgba(37, 99, 235, 0.06) 50%, 
-    rgba(37, 99, 235, 0.04) 60%, 
-    transparent 80%
+  /* 关键修改：使用 repeating-linear-gradient 创建稀疏的细光束 */
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10%,    /* 大面积留白 */
+    rgba(37, 99, 235, 0.03) 10.5%, /* 极淡的光束 (3% 透明度) */
+    rgba(37, 99, 235, 0.05) 11%,   /* 核心稍亮 (5% 透明度) */
+    rgba(37, 99, 235, 0.03) 11.5%,
+    transparent 12%,
+    transparent 25%     /* 下一束光的间距 */
   );
   
   background-size: 200% 200%;
-  
-  /* 应用动画：让光波缓慢流过屏幕 */
-  animation: data-flow 15s linear infinite;
-  pointer-events: none; /* 确保不阻挡点击 */
+  animation: subtle-drift 10s linear infinite; /* 10秒极慢漂移 */
 }
 
-/* 定义光波流动的关键帧动画 */
-@keyframes data-flow {
-  0% {
-    transform: translate(-20%, -20%) rotate(0deg);
-  }
-  100% {
-    transform: translate(20%, 20%) rotate(0deg);
-  }
+/* 新增：定义缓慢漂移的动画 */
+@keyframes subtle-drift {
+  0% { transform: translate(-5%, -5%); }
+  50% { transform: translate(5%, 5%); }
+  100% { transform: translate(-5%, -5%); }
 }
 
-
-
+/* =========================================
+   组件样式 (Components)
+   ========================================= */
 a { text-decoration: none; color: inherit; transition: 0.2s; }
 a:hover { color: var(--accent); }
 
@@ -97,10 +86,9 @@ a:hover { color: var(--accent); }
 }
 
 /* 导航栏：极简白底 */
-
 header {
   border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-  padding: 1.2rem 0;
+  padding: 1.0rem 0;
   background: rgba(255, 255, 255, 0.7); /* 降低不透明度 */
   backdrop-filter: blur(16px) saturate(180%); /* 增强模糊和饱和度（Apple风格） */
   position: sticky; top: 0; z-index: 100;
@@ -120,10 +108,26 @@ nav a:hover::after { width: 100%; }
 /* 核心板块样式 */
 section { margin-bottom: 5rem; }
 
-h1, h2, h3 { font-weight: 700; color: var(--text-main); margin-bottom: 1rem; }
+/* h1, h2, h3 { font-weight: 700; color: var(--text-main); margin-bottom: 1rem; }
 h1 { font-size: 2.5rem; letter-spacing: -0.02em; line-height: 1.2; }
-h2 { font-size: 1.5rem; border-bottom: 2px solid var(--bg-secondary); padding-bottom: 0.5rem; margin-bottom: 2rem; }
+h2 { font-size: 1.5rem; border-bottom: 2px solid var(--bg-secondary); padding-bottom: 0.5rem; margin-bottom: 2rem; } */
+/* 优化标题间距，适应 Markdown 的阅读节奏 */
+h1, h2, h3 { 
+  font-weight: 700; 
+  color: var(--text-main); 
+  margin-top: 3rem; 
+  margin-bottom: 1.5rem; 
+}
 
+/* 关键修改：让 h3 具备弹性布局，实现日期右对齐 */
+h3 { 
+  font-size: 1.3rem; 
+  margin-bottom: 0.5rem; 
+  display: flex; 
+  justify-content: space-between; /* 让标题文字在左，日期在右 */
+  align-items: baseline; 
+  flex-wrap: wrap; 
+}
 /* 按钮样式 */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -182,8 +186,6 @@ h2 { font-size: 1.5rem; border-bottom: 2px solid var(--bg-secondary); padding-bo
 .pub-authors { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.3rem; }
 .pub-venue { font-style: italic; color: var(--accent); font-weight: 500; font-size: 0.9rem; }
 
-/* 页脚 */
-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
 
 /* 博客文章内部样式 */
 .post-content h2 { margin-top: 2rem; margin-bottom: 1rem; color: var(--text-primary); }
@@ -220,14 +222,120 @@ footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: cente
   opacity: 0.9;
   letter-spacing: -0.5px;
 }
+/* 新增：辅助类 - 用于职位/角色的蓝色高亮 */
+.text-accent { 
+  color: var(--accent); 
+  font-weight: 600; 
+  margin-bottom: 1rem; 
+  display: block; 
+}
 
-/* 如果您在HTML中使用了标签（如 index.html 中的 Robotics 标签） */
-/* 建议给那些 span 加上 class="badge"，然后添加如下样式： */
-.badge, span[style*="border-radius"] { 
+/* 新增：技能标签容器 */
+.skills-wrapper { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 0.8rem; 
+  margin-top: 1rem; 
+}
+
+/* 新增：技能徽章样式 (Badge) */
+.badge { 
+  display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.75rem !important;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.05); /* 极淡蓝底 */
+  border: 1px solid rgba(37, 99, 235, 0.2); /* 蓝边框 */
+  color: var(--accent);
+}
+
+/* 页脚 */
+footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+
+
+
+
+/* assets/css/style.css - 添加到文件末尾 */
+
+/* --- 联系页面双栏布局 --- */
+.contact-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 左右 1:1 等宽 */
+  gap: 4rem;
+  align-items: start;
+}
+
+/* 移动端适配：屏幕变窄时自动改为单栏垂直排列 */
+@media (max-width: 768px) {
+  .contact-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* 左侧：联系信息卡片 */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.contact-item:hover {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(4px); /* 悬停时微微向右移动 */
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono); /* 使用等宽字体图标 */
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.contact-label {
+  font-size: 0.75rem;
   text-transform: uppercase;
+  color: var(--text-muted);
   letter-spacing: 0.5px;
-  background: rgba(37, 99, 235, 0.05); /* 极淡的蓝色背景 */
-  border: 1px solid rgba(37, 99, 235, 0.2) !important;
+  font-weight: 600;
+}
+
+.contact-value {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+/* 右侧：表单输入框样式优化 */
+.form-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.6); /* 半透明背景 */
+  color: var(--text-main);
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); /* 聚焦时的光晕 */
 }
