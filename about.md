@@ -61,7 +61,7 @@ Previously, I worked as a Full-Stack Developer, which gave me a strong engineeri
 ## Technical Skills
 
 <div class="skills-wrapper">
-{% assign skills = "Python, PyTorch, TensorFlow, C++, ROS/ROS2, Docker, Linux, Git, LaTeX" | split: ", " %}
+{% assign skills = "Python, PyTorch, CUDA/Triton, C++, ROS/ROS2, Docker, Linux, Git, LaTeX" | split: ", " %}
 {% for skill in skills %}
 <span class="badge">{{ skill }}</span>
 {% endfor %}
