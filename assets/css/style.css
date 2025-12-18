@@ -86,7 +86,7 @@ a:hover { color: var(--accent); }
 }
 
 /* 导航栏：极简白底 */
-header {
+body > header {
   border-bottom: 1px solid rgba(226, 232, 240, 0.6);
   padding: 1.0rem 0;
   background: rgba(255, 255, 255, 0.7); /* 降低不透明度 */
@@ -348,3 +348,21 @@ footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: cente
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); /* 聚焦时的光晕 */
 }
+
+/* 解决滚动条抖动 */
+/* --- assets/css/style.css --- */
+html {
+  /* 之前的代码 */
+  scroll-behavior: smooth;
+  /* 新增：解决页面切换时的抖动问题 */
+  /* 方案 A (推荐 - 现代浏览器): 
+     如果没有滚动条，也预留出滚动条的空间（透明），保持布局稳定 */
+  scrollbar-gutter: stable; 
+}
+
+/* 方案 B (兼容性更好 - 经典做法): 
+   如果上面的属性不起作用，你可以改用下面这行。
+   它会强制右侧永远显示滚动条轨道（即使页面很短）。
+   但导航栏会不固定
+*/
+/* html { overflow-y: scroll; } */
