@@ -22,14 +22,19 @@ permalink: /blog/:year/:month/:day/:title/
 # 自定义变量 (用于模板调用)
 # ==========================================
 author:
-  name: "您的姓名"
+  # name: "您的姓名"
+  # name: "Cryoflow"
+  # name: "Kainex"
+  name: "ShiWei"
   role: "Full-Stack Developer & UI/UX Designer"
   avatar: "/assets/images/avatar.jpg"
 
 social:
-  github: "yourusername"
+  # github: "yourusername"
+  github: "ShiWei-dev"
   linkedin: "yourusername"
   email: "your-email@domain.com"
+  personal_email: "shiwei.link@gmail.com"
 
 # ==========================================
 # 插件 (GitHub Pages 原生支持)

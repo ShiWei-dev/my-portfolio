@@ -30,11 +30,18 @@ permalink: /contact.html
                         <div class="contact-value">{{ site.social.email }}</div>
                     </div>
                 </a>
-                <a href="mailto:your-personal@gmail.com" class="contact-item">
+                <!-- <a href="mailto:your-personal@gmail.com" class="contact-item">
                     <div class="contact-icon">Me</div>
                     <div>
                         <div class="contact-label">Email (Personal)</div>
                         <div class="contact-value">your-personal@gmail.com</div>
+                    </div>
+                </a> -->
+                <a href="mailto:{{ site.social.personal_email }}" class="contact-item">
+                    <div class="contact-icon">Me</div>
+                    <div>
+                        <div class="contact-label">Email (Personal)</div>
+                        <div class="contact-value">{{ site.social.personal_email }}</div>
                     </div>
                 </a>
                 <!-- github -->
